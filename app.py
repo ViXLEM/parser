@@ -4,7 +4,8 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route("/")
-def main_text():
+def index():
+	"""Return simple string."""
     return "Main page text"
 
 if __name__ == "__main__":
