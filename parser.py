@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 def parse_data(html_code):
-    """Parsing HTML of category and return list of goods."""
+    """Parse HTML of category and return list of goods."""
 
     soup = BeautifulSoup(html_code, 'lxml')
     list_products_html_code = soup.find_all('div', class_='product')
@@ -28,13 +28,3 @@ def get_goods_data():
         catalog_data = parse_data(response.text)
         data.extend(catalog_data)
     return data
-
-
-def main():
-    """Print goods list."""
-
-    print(get_goods_data())
-
-
-if __name__ == '__main__':
-    main()
