@@ -1,10 +1,10 @@
 from celery import Celery
 
+
 def init_celery(app):
     """Initialize celery.
 
     :param app: flask application instance
-
     """
 
     celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'],
@@ -12,9 +12,9 @@ def init_celery(app):
     celery.conf.update(app.config)
     TaskBase = celery.Task
 
-
     class ContextTask(TaskBase):
         abstract = True
+
         def __call__(self, *args, **kwargs):
             with app.app_context():
                 return TaskBase.__call__(self, *args, **kwargs)
